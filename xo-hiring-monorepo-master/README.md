@@ -115,6 +115,40 @@ api-proxy/ + sf-*  --->  Salesforce
 
 Manager FE --(secretKey)--> AppSync --> Resolvers --> Filtered/Full data
 ```
+### Why Salesforce is used
+
+- **System of record for hiring**: Centralizes Candidates/Contacts, Jobs/Opportunities, Applications, Interviews.
+- **Native automation & workflows**: Assignment, notifications, SLAs, approvals triggered from synced results.
+- **Reporting & analytics**: Funnels, cohort performance, drop-off, quality metrics in a single place.
+- **Ecosystem integrations**: Offers, onboarding, billing, ops tools already connected to Salesforce.
+
+Related services in this repo:
+- Gateways/Proxies: `api-proxy/`
+- Salesforce services: `sf-api/`, `sf-updater/`, `sf-process-raw-applications/`, `sf-exceptions-proxy/`
+- Ops analytics: `stats-tracker/`
+
+### Detailed end-to-end workflow
+
+1) Candidate starts session via Interview app → GraphQL (`interview-bot/schema.graphql`).
+2) Resolvers in `interview-bot/graphql-resolvers/src/resolvers/*` read/write DynamoDB (Sessions/Questions).
+3) Candidate answers → mutations store responses; subscription pushes real-time updates.
+4) `Mutation.markSessionAsCompleted` (`.../Mutation.markSessionAsCompleted.ts`) sets `state=Completed`, `endTime=now` using `getSessionKey()` and `util.dynamodb.toMapValues(...)`.
+5) `grading-bot/` consumes responses, applies LLM/domain logic (`packages/*`), writes results + `secretKey`, sets `state=Graded`.
+6) Manager queries with `secretKey` → resolvers apply `graphql-resolvers/src/utils/data-protection.ts` to hide Protected fields when key is missing/invalid.
+7) Results sync via `api-proxy/`, `sf-api/`, `sf-updater/`, `sf-process-raw-applications/` to Salesforce; exceptions via `sf-exceptions-proxy/`.
+8) Infra uses CDK stacks in `deploy/src/deployments/*` (config: `deploy/src/config/*`) across Prod/Sandbox/Preview.
+
+### Why resolvers and other components
+
+- **Resolvers (AppSync)**: Implement per-field logic with `request(ctx)`/`response(ctx)`, validate inputs, access data sources (DynamoDB), and enforce security. Examples:
+  - `Query.getSessionById.ts`, `Session.questions.ts` → fetch + protect fields
+  - `Mutation.markSessionAsCompleted.ts` → transition to Completed
+- **DynamoDB**: Low-latency store for sessions/questions; fits single-table access patterns.
+- **AppSync GraphQL**: Strongly typed API with subscriptions and auth; clean client contract.
+- **grading-bot**: Decouples heavy/async scoring from request path; uses shared logic from `packages/*`.
+- **Salesforce services**: Boundary for CRM; handle retries, mapping, security (no direct DB writes).
+- **Data protection utils**: Prevent leak of ideal answers/rubrics; manager-only via `secretKey`.
+- **CDK stacks**: Repeatable infra-as-code with preview envs on PRs.
 ## Deployment
 
 ### Deployment Process
