@@ -120,6 +120,7 @@ flowchart LR
   APIX -->|Salesforce sync| SFUP
   APIX -->|Salesforce sync| SFPR
   APIX -->|Salesforce sync| SFEX
+```
 ## Deployment
 
 ### Deployment Process
