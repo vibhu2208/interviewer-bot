@@ -75,7 +75,51 @@ There are three main environments:
 - **Preview**: Deployed for pull requests
 
 **Important**: If you add a new environment variable, make sure to add it to all environment configurations.
+## System Workflow
 
+```mermaid
+flowchart LR
+  subgraph FE[Candidate/Manager Frontends]
+    FE1[Interview App (Candidate)]
+    FE2[Manager App]
+  end
+
+  FE1 -->|GraphQL queries/mutations| APPSYNC[(AWS AppSync GraphQL)]
+  FE2 -->|GraphQL queries with secretKey| APPSYNC
+
+  subgraph RES[GraphQL Resolvers (Lambda)]
+    R1[Query/Mutation Resolvers<br/>interview-bot/graphql-resolvers/src/resolvers/*]
+    DP[Data Protection<br/>interview-bot/graphql-resolvers/src/utils/data-protection.ts]
+  end
+
+  APPSYNC --> R1
+  R1 -->|DynamoDB API| DDB[(DynamoDB - Sessions/Questions)]
+  R1 -->|Subscriptions| APPSYNC
+
+  subgraph GRADING[Automated Grading]
+    GB[grading-bot/src/*]
+    PKG1[packages/beginner-mind-grader/]
+    PKG2[packages/interview-assist/]
+  end
+
+  R1 -->|write grades/secretKey| GB
+  GB -->|read/write session| R1
+  GB --> PKG1
+  GB --> PKG2
+
+  subgraph INTEGRATIONS[Integrations & Ops]
+    APIX[api-proxy/]
+    SFAPI[sf-api/]
+    SFUP[sf-updater/]
+    SFPR[sf-process-raw-applications/]
+    SFEX[sf-exceptions-proxy/]
+  end
+
+  GB -->|graded outcomes| APIX
+  APIX -->|Salesforce sync| SFAPI
+  APIX -->|Salesforce sync| SFUP
+  APIX -->|Salesforce sync| SFPR
+  APIX -->|Salesforce sync| SFEX
 ## Deployment
 
 ### Deployment Process
