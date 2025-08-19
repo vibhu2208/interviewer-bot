@@ -77,49 +77,43 @@ There are three main environments:
 **Important**: If you add a new environment variable, make sure to add it to all environment configurations.
 ## System Workflow
 
-```mermaid
-flowchart LR
-  subgraph FE[Candidate/Manager Frontends]
-    FE1[Interview App (Candidate)]
-    FE2[Manager App]
-  end
+Simple textual flow (no special renderers required):
 
-  FE1 -->|GraphQL queries/mutations| APPSYNC[(AWS AppSync GraphQL)]
-  FE2 -->|GraphQL queries with secretKey| APPSYNC
+1. Candidate starts a session via the Interview app.
+2. Frontend calls AppSync GraphQL (schema: `interview-bot/schema.graphql`).
+3. Resolvers (`interview-bot/graphql-resolvers/src/resolvers/*`) read/write DynamoDB.
+4. Candidate answers questions; subscription sends real-time updates.
+5. Candidate marks session completed; resolver updates `state=Completed`, sets `endTime`.
+6. Grading-bot (`grading-bot/src/*`) runs, writes results + `secretKey`, sets `state=Graded`.
+7. Manager views report using `secretKey`; resolvers hide Protected fields without it.
+8. Salesforce sync via `api-proxy/` and `sf-*` services.
 
-  subgraph RES[GraphQL Resolvers (Lambda)]
-    R1[Query/Mutation Resolvers<br/>interview-bot/graphql-resolvers/src/resolvers/*]
-    DP[Data Protection<br/>interview-bot/graphql-resolvers/src/utils/data-protection.ts]
-  end
+ASCII overview diagram:
 
-  APPSYNC --> R1
-  R1 -->|DynamoDB API| DDB[(DynamoDB - Sessions/Questions)]
-  R1 -->|Subscriptions| APPSYNC
+```
+Candidate FE
+    |
+    v
+AWS AppSync (GraphQL)
+    |
+    v
+Resolvers (Lambdas)
+  - interview-bot/graphql-resolvers/src/resolvers/*
+    |
+    v
+DynamoDB (Sessions/Questions)
+    ^                          
+    |  (read/write)            
+    |                          
+Grading-bot (grading-bot/src/*)
+    |
+    v
+Save grading + secretKey, set state=Graded
+    |
+    v
+api-proxy/ + sf-*  --->  Salesforce
 
-  subgraph GRADING[Automated Grading]
-    GB[grading-bot/src/*]
-    PKG1[packages/beginner-mind-grader/]
-    PKG2[packages/interview-assist/]
-  end
-
-  R1 -->|write grades/secretKey| GB
-  GB -->|read/write session| R1
-  GB --> PKG1
-  GB --> PKG2
-
-  subgraph INTEGRATIONS[Integrations & Ops]
-    APIX[api-proxy/]
-    SFAPI[sf-api/]
-    SFUP[sf-updater/]
-    SFPR[sf-process-raw-applications/]
-    SFEX[sf-exceptions-proxy/]
-  end
-
-  GB -->|graded outcomes| APIX
-  APIX -->|Salesforce sync| SFAPI
-  APIX -->|Salesforce sync| SFUP
-  APIX -->|Salesforce sync| SFPR
-  APIX -->|Salesforce sync| SFEX
+Manager FE --(secretKey)--> AppSync --> Resolvers --> Filtered/Full data
 ```
 ## Deployment
 
