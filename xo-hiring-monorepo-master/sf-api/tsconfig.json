@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "compilerOptions": {
+    "strict": false,
+    "outDir": "dist/code",
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules/", "test/", "*.ts"],
+  "ts-node": {
+    "files": true
+  }
+}

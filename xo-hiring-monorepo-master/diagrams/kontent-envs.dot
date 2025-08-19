@@ -1,0 +1,110 @@
+@startuml Kontent environments
+
+skinparam componentStyle rectangle
+skinparam PackageStyle Rectangle
+skinparam linetype ortho
+
+title
+Kontent environments
+<i>AS-IS</i>
+end title
+
+package "XO Hiring Admin Backend" {
+    object "production" as xhab_production
+    object "staging" as xhab_staging
+    object "sand" as xhab_sand
+}
+
+package "XO Hiring Admin Frontend" {
+    object "production" as xhaf_production
+    object "staging" as xhaf_staging
+    object "sand" as xhaf_sand
+}
+
+package "XO Hiring Candidate Frontend" {
+    object "production" as xhc_production
+    object "staging" as xhc_staging
+    object "sand" as xhc_sand
+}
+
+package "AWS CloudFront"
+{
+    map "E2W7GEYS6S9W1C" as d2lwa34v00mbfg {
+        Domain name => d2lwa34v00mbfg.cloudfront.net
+        Comment => xo-hiring-production-distribution
+    }
+    map "E1WCMA61NTR5H8" as d1auqipo1qr6o2 {
+        Domain name => d1auqipo1qr6o2.cloudfront.net
+        Comment => xo-hiring-staging-distribution
+    }
+    map "E2JJBS81ZSPO5E" as d3qpvu2ovq9sug {
+        Domain name => d3qpvu2ovq9sug.cloudfront.net
+        Comment => xo-hiring-sandbox-distribution
+    }
+}
+
+package "AWS SecretManager"
+{
+    map "secret" as secret_prod {
+        name => xo-hiring-admin-production/kontent-ai
+    }
+    map "secret" as secret_staging {
+        name => xo-hiring-admin-staging/kontent-ai
+    }
+    map "secret" as secret_sand {
+        name => xo-hiring-admin-sand/kontent-ai
+    }
+}
+
+package "Kontent.ai" {
+    map "kontent" as kontent_5eda04e1 {
+        id => 5eda04e1-4fa6-0009-429c-ccf17cc15030
+        project => Crossover Hire Dev
+        environment => Production
+    }
+    map "kontent" as kontent_b2a605cc {
+        id => b2a605cc-8baa-002d-a6f4-283c1a3ecc48
+        project => Crossover Hire Dev
+        environment => Development
+    }
+    map "kontent" as kontent_bfd47a82 {
+        id => bfd47a82-dd55-0080-581b-f8b8bcbb01e6
+        project => Crossover Hire Zamstars Acceptance
+    }
+    map "kontent" as kontent_7beb5311 {
+        id => 7beb5311-75a4-0049-50f5-8f58fd55aba7
+        project => Crossover Hire Production
+        environment => Production
+    }
+    map "kontent" as kontent_165c93cb {
+        id => 165c93cb-f953-00da-f4e2-7ac94bc8cab9
+        project => Crossover Hire Production
+        environment => Staging
+    }
+}
+
+xhaf_sand --> xhab_sand
+xhaf_staging --> xhab_staging
+xhaf_production --> xhab_production
+
+xhaf_sand --> kontent_5eda04e1
+xhaf_staging --> kontent_165c93cb
+xhaf_production --> kontent_7beb5311
+
+xhab_sand --> secret_sand
+xhab_staging --> secret_staging
+xhab_production --> secret_prod
+
+secret_sand --> kontent_5eda04e1
+secret_staging --> kontent_165c93cb
+secret_prod --> kontent_7beb5311
+
+xhc_sand --> d3qpvu2ovq9sug
+xhc_staging --> d1auqipo1qr6o2
+xhc_production --> d2lwa34v00mbfg
+
+d2lwa34v00mbfg --> kontent_7beb5311
+d1auqipo1qr6o2 --> kontent_165c93cb
+d3qpvu2ovq9sug --> kontent_5eda04e1
+
+@enduml

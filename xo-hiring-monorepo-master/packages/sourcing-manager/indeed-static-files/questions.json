@@ -1,0 +1,20 @@
+[
+  {
+    "id": "first_header",
+    "type": "information",
+    "text": "<p><em>You're one step closer to your dream remote job. Welcome!</em><br>As the world's largest recruiter of premium full-time remote jobs, Crossover uses a skills-based hiring system with simple self-paced assessments.</p><p>We help the best people in the world qualify for the best jobs in the world—and earn a lot more in USD than most local jobs.</p><p>To get this job, you'll need to prove that your skills are in the top 1% of your field. Have you got what it takes?</p><p><strong>What to expect next:</strong></p><ol><li>After submitting your application here on Indeed, you will receive an email with a link to start your self-paced, online job application.</li><li>You'll have 14 days to complete a series of online screening assessments. The first tests will take under an hour, and make sure you're a basic fit for the role (with sufficient work experience, cognitive aptitude, and language skills).</li><li>If you ace those, you'll be invited to prove your job skills and complete assessments modeled on real work. The top applicants will be interviewed by the hiring manager (and 80% of interviews result in a job offer).</li></ol><p>If you don't receive the email within 15 mins, check spam, or reset your password <a href=\"https://www.crossover.com/auth/reset-password\">here</a>.</p>",
+    "fontsize": 8
+  },
+  {
+    "id": "self-confirmation",
+    "type": "select",
+    "question": "Are you ready to prove your skills are world-class?",
+    "required": true,
+    "options": [
+      {
+        "value": "0",
+        "label": "Yes! (and I'll check my email for the link to proceed)"
+      }
+    ]
+  }
+]

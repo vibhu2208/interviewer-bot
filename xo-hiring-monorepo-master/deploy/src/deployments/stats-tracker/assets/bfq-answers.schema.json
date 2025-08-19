@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "acceptableCompensation": {
+      "type": "number"
+    },
+    "desiredCompensation": {
+      "type": "number"
+    },
+    "workingHours": {
+      "type": "object",
+      "properties": {
+        "timezone": {
+          "type": "string"
+        },
+        "start": {
+          "type": "number"
+        },
+        "end": {
+          "type": "number"
+        },
+        "flexible": {
+          "type": "boolean"
+        }
+      },
+      "required": ["timezone", "start", "end", "flexible"],
+      "additionalProperties": false
+    },
+    "availabilityToStart": {
+      "type": "number"
+    },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "questionId": {
+            "type": "string"
+          },
+          "facets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "facet": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "number"
+                },
+                "notes": {
+                  "type": ["string", "null"]
+                }
+              },
+              "required": ["facet", "value"],
+              "additionalProperties": false
+            }
+          },
+          "value": {
+            "type": "number"
+          },
+          "notes": {
+            "type": ["string", "null"]
+          }
+        },
+        "oneOf": [
+          {
+            "required": ["value"]
+          },
+          {
+            "required": ["facets"]
+          }
+        ],
+        "required": ["questionId"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["acceptableCompensation", "desiredCompensation", "workingHours", "availabilityToStart", "domains"],
+  "additionalProperties": false
+}

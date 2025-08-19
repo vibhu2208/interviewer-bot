@@ -1,0 +1,58 @@
+{
+  "name": "@trilogy-group/xoh-integration",
+  "version": "1.6.1",
+  "description": "Integration library with various services for XO-Hiring",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --silent --verbose",
+    "coverage": "jest --silent --verbose --coverage --coverageReporters='text-summary'",
+    "create-index": "cti create -w -b ./src"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "/dist"
+  ],
+  "publishConfig": {
+    "cache": "~/.npm",
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:trilogy-group/xo-hiring-monorepo.git",
+    "directory": "packages/xoh-integration"
+  },
+  "dependencies": {
+    "axios": "1.7.9",
+    "@aws-lambda-powertools/logger": "2.3.0",
+    "@aws-sdk/client-athena": "3.596.0",
+    "@aws-sdk/client-secrets-manager": "3.596.0",
+    "@aws-sdk/client-ssm": "3.596.0",
+    "chalk": "4.1.2"
+  },
+  "peerDependencies": {
+    "ai": "^4.0.0",
+    "@ai-sdk/amazon-bedrock": "^1.0.0",
+    "@ai-sdk/openai": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "tsx": "4.11.0",
+    "@types/node": "20.12.12",
+    "jest": "29.7.0",
+    "ts-jest": "29.1.5",
+    "@types/jest": "29.5.12",
+    "create-ts-index": "1.14.0",
+    "ai": "^4.1.17",
+    "@ai-sdk/amazon-bedrock": "^1.1.6",
+    "@ai-sdk/openai": "^1.1.9"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "roots": [
+      "test"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "defaults": {
+    "answerLevels": [
+      {
+        "label": "<2 years",
+        "max": 2
+      },
+      {
+        "label": "2-4 years",
+        "min": 2,
+        "max": 4
+      },
+      {
+        "label": "over 4 years",
+        "min": 4
+      }
+    ]
+  },
+  "mappings": {
+    "generalQuestions": ["industries"],
+    "domainQuestions": [
+      {
+        "domain": "software_development",
+        "questionIds": ["engWriteProdCode", "engOwnership"]
+      },
+      {
+        "domain": "quality_assurance",
+        "questionIds": ["qaDefineTests"]
+      },
+      {
+        "domain": "inside_sales",
+        "questionIds": ["salesQuota"]
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "engWriteProdCode",
+      "questionLabel": "Experience in writing production code",
+      "questionType": "multifaceted",
+      "answerType": "number",
+      "facets": [
+        { "code": "java", "label": "Java" },
+        { "code": "cs", "label": "C#" },
+        { "code": "jsts", "label": "Javascript or Typescript" }
+      ]
+      // "answerLevels" is not specified so defaults are used
+    },
+    {
+      "id": "qaDefineTests",
+      "questionLabel": "Experience defining tests",
+      "questionType": "simple",
+      "answerType": "number"
+      // "answerLevels" is not specified so defaults are used
+    },
+    {
+      "id": "engOwnership",
+      "questionLabel": "Highest level of ownership",
+      "questionType": "simple",
+      "answerType": "choice",
+      "answerChoices": ["Features or modules", "Products or modules of large products", "Large products"]
+    },
+    {
+      "id": "salesQuota",
+      "questionLabel": "Larges sales quota assigned",
+      "questionType": "simple",
+      "answerType": "number",
+      "answerLevels": [
+        {
+          "label": "less than $500k",
+          "max": 500000
+        },
+        {
+          "label": "$500k - $1M",
+          "min": 500000,
+          "max": 1000000
+        }
+      ]
+    },
+    {
+      "id": "industries",
+      "questionLabel": "Industry-specific experience",
+      "questionType": "multifaceted",
+      "answerType": "number",
+      "facets": [
+        { "code": "telco", "label": "Telecom" },
+        { "code": "fin", "label": "Fintech/Banking" }
+      ]
+      // "answerLevels" is not specified so defaults are used
+    }
+  ]
+}

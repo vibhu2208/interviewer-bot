@@ -1,0 +1,67 @@
+cometd:
+  - 'deploy/src/deployments/cometd/**'
+  - 'cometd/**'
+sf-api:
+  - 'deploy/src/deployments/sf-api/**'
+  - 'sf-api/**'
+  - 'sf-action-caller/**'
+  - 'api-proxy/**'
+kontent-api:
+  - 'deploy/src/deployments/kontent-api/**'
+  - 'kontent-api/**'
+uploadavatar:
+  - 'deploy/src/deployments/uploadavatar/**'
+  - 'uploadavatar/**'
+site-recacher:
+  - 'deploy/src/deployments/site-recacher/**'
+  - 'site-recacher/**'
+terminated-partners:
+  - 'deploy/src/deployments/terminated-partners/**'
+  - 'terminated-partners/**'
+sandbox-refresh:
+  - 'deploy/src/deployments/sandbox-refresh/**'
+  - 'sandbox-refresh/**'
+stats-tracker:
+  - 'deploy/src/deployments/stats-tracker/**'
+  - 'stats-tracker/**'
+  - 'open-search/**'
+sf-updater:
+  - 'deploy/src/deployments/sf-updater/**'
+  - 'sf-updater/**'
+  - 's3-cleanup/**'
+indeed-xml-generator:
+  - 'deploy/src/deployments/indeed-xml-generator/**'
+  - 'indeed-xml-generator/**'
+sf-process-raw-applications:
+  - 'deploy/src/deployments/sf-process-raw-applications/**'
+  - 'sf-process-raw-applications/**'
+auth:
+  - 'deploy/src/deployments/auth/**'
+  - 'packages/candidate-cognito-auth/**'
+automations:
+  - 'deploy/src/deployments/automations/**'
+  - 'packages/automations/**'
+watcher:
+  - 'deploy/src/deployments/watcher/**'
+  - 'watcher/**'
+grading-bot:
+  - 'deploy/src/deployments/grading-bot/**'
+  - 'grading-bot/**'
+interview-bot:
+  - 'deploy/src/deployments/interview-bot/**'
+  - 'interview-bot/**'
+xo-ai-coach:
+  - 'deploy/src/deployments/xo-ai-coach/**'
+  - 'xo-ai-coach/**'
+sf-exceptions:
+  - 'deploy/src/deployments/sf-exceptions/**'
+  - 'sf-exceptions-proxy/**'
+bfq-verification:
+  - 'deploy/src/deployments/bfq-verification/**'
+  - 'bfq-verification/**'
+sourcing-manager:
+  - 'deploy/src/deployments/sourcing-manager/**'
+  - 'packages/sourcing-manager/**'
+interview-assist:
+  - 'deploy/src/deployments/interview-assist/**'
+  - 'packages/interview-assist/**'

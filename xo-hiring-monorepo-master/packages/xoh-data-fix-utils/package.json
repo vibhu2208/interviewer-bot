@@ -1,0 +1,27 @@
+{
+  "name": "xoh-data-fix-utils",
+  "version": "1.0.0",
+  "description": "A collection of script to help with SF Data Fix",
+  "scripts": {
+    "doFix": "tsx src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trilogy-group/xo-hiring-monorepo.git"
+  },
+  "author": "Artem Melnikov",
+  "dependencies": {
+    "@trilogy-group/xo-hiring-integration": "^1.1.4",
+    "@trilogy-group/xoh-integration": "^1.6.0",
+    "@aws-sdk/client-sqs": "3.808.0",
+    "csv": "^6.3.9",
+    "dotenv": "^16.4.5",
+    "luxon": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.4.2",
+    "@types/node": "20.12.7",
+    "tsx": "4.7.3",
+    "typescript": "5.4.5"
+  }
+}

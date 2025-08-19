@@ -1,0 +1,23 @@
+{
+  "name": "style-check",
+  "version": "1.0.0",
+  "scripts": {
+    "eslint:lint-all": "npx eslint . --ext .ts,.tsx",
+    "prettier:check-all": "npx prettier --check .",
+    "prettier:fix-all": "npx prettier --write ."
+  },
+  "dependencies": {
+    "@trilogy-group/xo-hiring-parameters": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "5.3.0",
+    "@typescript-eslint/parser": "5.3.0",
+    "eslint": "8.2.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "prettier": "2.4.1",
+    "ts-node": "10.4.0",
+    "typescript": "4.4.4"
+  }
+}

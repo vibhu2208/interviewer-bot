@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "include": ["src/**/*.ts"],
+  "compilerOptions": {
+    "lib": ["DOM"],
+    "outDir": "dist/code",
+    "sourceMap": true,
+    "declaration": true,
+    "resolveJsonModule": true
+  }
+}

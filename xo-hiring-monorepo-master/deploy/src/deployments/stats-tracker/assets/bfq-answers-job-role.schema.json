@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "currentCompensation": {
+      "type": "string"
+    },
+    "currentCompensationPeriod": {
+      "type": "string"
+    },
+    "careerGoals": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

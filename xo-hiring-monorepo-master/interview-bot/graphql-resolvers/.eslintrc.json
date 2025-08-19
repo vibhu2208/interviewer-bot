@@ -1,0 +1,16 @@
+{
+    "extends": ["plugin:@aws-appsync/recommended"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "project": "./tsconfig.json",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "root": true,
+    "ignorePatterns": ["dist/"],
+    "rules": {
+    }
+}

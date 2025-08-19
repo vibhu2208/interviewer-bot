@@ -1,0 +1,20 @@
+{
+  "name": "candidate-cognito-auth",
+  "version": "2.0.0",
+  "description": "Candidate Portal Cognito Triggers",
+  "scripts": {
+    "build": "tsx build.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.808.0",
+    "@trilogy-group/xoh-integration": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.149",
+    "@types/node": "^22.15.17",
+    "typescript": "^5.8.3",
+    "esbuild": "^0.25.4",
+    "fast-glob": "^3.3.3",
+    "tsx": "^4.19.4"
+  }
+}

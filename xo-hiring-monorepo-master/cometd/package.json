@@ -1,0 +1,19 @@
+{
+  "name": "cometd",
+  "version": "1.0.0",
+  "description": "Infrastructure to proxy cometd calls.",
+  "main": "cometd.js",
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "dependencies": {
+    "@types/aws-lambda": "^8.10.85",
+    "aws-sdk": "^2.996.0"
+  },
+  "devDependencies": {
+    "typescript": "~3.8.3",
+    "@types/node": "~12.12.6"
+  },
+  "author": "",
+  "license": "ISC"
+}

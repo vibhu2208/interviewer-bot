@@ -1,0 +1,29 @@
+{
+  "name": "uploadvatar",
+  "version": "2.0.0",
+  "description": "AWS Lambda function used for uploading avatars",
+  "main": "dist/code/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "atob": "^2.1.2",
+    "image-type": "^4.1.0",
+    "sanitize-filename": "^1.6.3",
+    "zod": "^3.11.6"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.3",
+    "@types/atob": "^2.1.2",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.5",
+    "aws-sdk": "^2.1048.0",
+    "jest": "^27.4.7",
+    "ts-jest": "^27.1.2",
+    "typescript": "^4.9.3"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  }
+}

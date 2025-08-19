@@ -1,0 +1,34 @@
+{
+  "totalSize": 2,
+  "done": true,
+  "records": [
+    {
+      "attributes": {
+        "type": "Grading_Rule__c",
+        "url": "/services/data/v58.0/sobjects/Grading_Rule__c/a1b2j000004BKmwAAG"
+      },
+      "Id": "a1b2j000004BKmwAAG",
+      "Name": "Choose an example correctly",
+      "Active__c": false,
+      "Rule__c": "Did they choose an example that required them to perform at a high level?\r\n\r\nHigh-performance means the goal is one that is difficult to achieve and fewer than 10% of people accomplish it. An ambitious and demanding goal requires risk-taking, stretching boundaries, and personal growth. This should be a time they achieved or accomplished a specific goal that not many people achieve, not a general “I did a hard thing” story.",
+      "Pass_Examples__c": "Securing a spot on a national sports team\r\nWinning a national competition or tournament\r\nEarning a highly competitive scholarship\r\nEarning a PhD (doctoral degree)\r\nRunning a marathon\r\nTurning around a failing team and making it a top performing team\r\nCreating the worlds’ best product or service",
+      "Fail_Examples__c": "Making it through their first year teaching\r\nImproving student performance as a teacher\r\nGetting good grades\r\nEarning a high school diploma\r\nGetting into college / earning college admission\r\nTraining new hires",
+      "Application_Step__c": "a082j000001v0kgAAA",
+      "SM_Key_Name_Pattern__c": "Instructions:%"
+    },
+    {
+      "attributes": {
+        "type": "Grading_Rule__c",
+        "url": "/services/data/v58.0/sobjects/Grading_Rule__c/a1b2j000004BKmxAAG"
+      },
+      "Id": "a1b2j000004BKmxAAG",
+      "Name": "Did they clearly define hard work",
+      "Active__c": false,
+      "Rule__c": "Did they clearly define hard work? We are not evaluating the quality of their definition, just whether or not they defined it in their own terms.",
+      "Pass_Examples__c": "Hard work is doing the things everyone else discounts because you know the small habits add up.\r\nHard work means giving your maximum effort every time.\r\nHard work is pushing yourself to do more or be better than you were last time.\r\nHard work is not giving up.",
+      "Fail_Examples__c": "Failing to define hard work.\r\nSaying things like “I don’t think hard work can be defined.”\r\nSaying “Hard work looks different for everyone” with no further clarification of what it looks like for them.\r\nCircular logic like “Hard work means working really hard at something.”",
+      "Application_Step__c": "a082j000001v0kgAAA",
+      "SM_Key_Name_Pattern__c": "Instructions:%"
+    }
+  ]
+}

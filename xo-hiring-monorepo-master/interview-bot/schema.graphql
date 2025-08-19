@@ -1,0 +1,173 @@
+# pk = SKILL#{ID}, sk=SKILL
+type Skill {
+  id: ID!
+  name: String!
+  description: String!
+  instructions: String
+  mode: String # 'free-response' | 'prompt-engineering' | 'interview'
+  detectTabSwitches: Boolean
+  preventCopyPaste: Boolean
+}
+
+enum SessionState {
+  Initializing
+  Ready
+  Started
+  Completed
+  Graded
+}
+
+type SessionEvent {
+  time: String!
+  type: String!
+}
+
+# pk = SESSION#{ID}, sk=SESSION
+type Session {
+  id: ID!
+  state: SessionState!
+  durationLimit: Int!
+  isTimeboxed: Boolean!
+  startTime: AWSDateTime
+  endTime: AWSDateTime
+  grading: Grading # Protected
+  sessionEvents: [SessionEvent] # Protected
+  skill: Skill!
+  questions: [Question]! # Resolver
+  testTaker: UserInfo!
+}
+
+type UserInfo {
+  name: String!
+  email: String!
+}
+
+type Grading {
+  summary: String
+  score: Float
+  reasoning: String
+}
+
+type QuestionConfiguration {
+  maxAttempts: Int
+  model: String
+}
+
+type GradingRule {
+  description: String
+  score: Float
+}
+
+# pk = SESSION#{ID}, sk=QUESTION#{ID}
+type Question {
+  id: ID!
+  question: String!
+  perfectAnswer: String # Protected
+  answer: String
+  correctnessGrading: Grading # Protected
+  depthGrading: Grading # Protected
+  defaultAnswer: String
+  promptSettings: QuestionConfiguration
+  promptResult: String # Protected
+  answerMaxSize: Int
+  answerAttempts: Int
+  gradingRubric: String # Protected
+  cheatingRubric: String # Protected
+  cheatingCheck: CheatingCheck # Protected
+  cheatingPatterns: [String] # Protected
+  cheatingCheckRegex: CheatingCheck # Protected
+  gradingRules: [GradingRule] # Protected
+  status: String
+  conversation: [ConversationElement]
+  state: String # 'Completed' if the question if completed
+  dimensions: [Dimension] # Protected
+  dimensionsGrading: [DimensionGrading] # Protected
+}
+
+type Dimension {
+  name: String
+  levels: Int
+}
+
+type DimensionGrading {
+  name: String
+  level: Int
+  summary: String
+}
+
+type ConversationElement {
+  content: String
+  role: String # 'user' | 'assistant'
+  reasoning: String
+}
+
+type CheatingCheck {
+  summary: String
+  cheated: String
+}
+
+type Query {
+  getSessionById(sessionId: ID!, secretKey: String): Session
+}
+
+enum Perception {
+  Good
+  Neutral
+  Bad
+}
+
+type Mutation {
+  setQuestionAnswer(sessionId: ID!, questionId: ID!, answer: String!): Boolean
+  markSessionAsCompleted(sessionId: ID!): Boolean
+  attemptAnswer(sessionId: ID!, questionId: ID!, answer: String!): OperationResult!
+  recordFeedback(sessionId: ID!, perception: Perception!, comment: String): Boolean
+  recordSessionEvent(sessionId: ID!, eventName: String!): Boolean
+
+  # Used internally to trigger subscription. Only lambda can call it due to @aws_iam
+  # The input will be echoed back as the response as required by the subscription mechanism
+  triggerAnswerAttempted(data: AnswerAttemptInput!): AnswerAttemptResult! @aws_iam
+}
+
+type Subscription {
+  # Subscribe to the answer attempt result for the specific question. The output should be nullable
+  # sessionId and questionId are filtering based on the content of the AnswerAttemptResult (field names must match)
+  answerAttempted(sessionId: ID!, questionId: ID!): AnswerAttemptResult
+    @aws_subscribe(mutations: ["triggerAnswerAttempted"])
+}
+
+# Copy of the AnswerAttemptResult type but as an input. Will be echoed back as AnswerAttemptResult
+input AnswerAttemptInput {
+  error: String # Null if success
+  result: String
+  attempts: Int
+  sessionId: ID # This field must be provided by lambda to allow filtering
+  questionId: ID # This field must be provided by lambda to allow filtering
+  state: String # Question state (if the question have one). One of: 'Completed' | null
+  validAnswer: Boolean # False if answer is not valid (i.e. cheating detected)
+}
+
+# The data that will be received by the subscriber. Both lambda and frontend need to access it, hence dual auth mode
+type AnswerAttemptResult @aws_iam @aws_api_key {
+  error: String # Null if success
+  result: String
+  attempts: Int
+  sessionId: ID # This field must be requested as output by lambda to allow filtering
+  questionId: ID # This field must be requested as output by lambda to allow filtering
+  state: String # Question state (if the question have one). One of: 'Completed' | null
+  validAnswer: Boolean # False if answer is not valid (i.e. cheating detected)
+}
+
+type OperationResult {
+  error: String # Null if success
+}
+
+input GradingInput {
+  summary: String!
+  score: Float!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

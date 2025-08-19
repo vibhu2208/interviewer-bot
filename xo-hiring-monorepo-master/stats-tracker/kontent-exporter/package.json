@@ -1,0 +1,26 @@
+{
+  "name": "kontent-exporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node -r dotenv/config src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^17.0.35",
+    "aws-sdk": "^2.1140.0",
+    "dotenv": "^16.0.1",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "axios": "0.21.1",
+    "zod": "^3.17.2"
+  }
+}

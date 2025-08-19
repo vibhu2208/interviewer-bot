@@ -1,0 +1,37 @@
+{
+  "name": "interview-bot-evaluator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Test harness for validating the quality of the Interview Bot.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "generate:graphql": "amplify codegen",
+    "evaluate:persona": "tsx src/personas/evaluate-personas.ts",
+    "evaluate:bot": "tsx src/bot-evaluator/bot-evaluator.ts",
+    "generate:report": "tsx src/bot-evaluator/report-generator.ts",
+    "evaluate:local": "tsx src/bot-evaluator/local-run.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@trilogy-group/xoh-integration": "^1.6.1",
+    "aws-appsync": "^4.1.10",
+    "axios": "^1.7.9",
+    "cross-fetch": "^4.1.0",
+    "graphql-tag": "^2.12.6",
+    "handlebars": "^4.7.8",
+    "rxjs": "^7.8.2",
+    "tsx": "^4.7.2",
+    "uuid": "^11.1.0",
+    "ws": "^8.18.2",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@aws-amplify/cli": "^13.0.1",
+    "@types/aws-lambda": "^8.10.138",
+    "@types/uuid": "^10.0.0",
+    "aws-amplify": "^6.15.0",
+    "tslib": "^2.4.0",
+    "typescript": "^5.4.5"
+  }
+}

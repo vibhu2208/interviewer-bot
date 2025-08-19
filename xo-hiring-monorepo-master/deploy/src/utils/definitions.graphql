@@ -1,0 +1,26 @@
+# Define types so that IDE can understand them
+# If you use IntelliJ with GraphQL plugin, this will allow it to properly highlight all AWS types and directives
+
+# From: https://docs.aws.amazon.com/appsync/latest/devguide/scalars.html
+# AWS Types
+scalar AWSDate
+scalar AWSTime
+scalar AWSDateTime
+scalar AWSTimestamp
+scalar AWSEmail
+scalar AWSJSON
+scalar AWSURL
+scalar AWSPhone
+scalar AWSIPAddress
+
+# AWS Core directives
+directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
+directive @aws_auth(cognito_groups: [String!]!) on FIELD_DEFINITION
+directive @aws_api_key on FIELD_DEFINITION | OBJECT
+directive @aws_iam on FIELD_DEFINITION | OBJECT
+directive @aws_oidc on FIELD_DEFINITION | OBJECT
+directive @aws_cognito_user_pools(cognito_groups: [String!]) on FIELD_DEFINITION | OBJECT
+directive @aws_lambda on FIELD_DEFINITION | OBJECT
+
+# Functions
+directive @function(name: String!) on FIELD_DEFINITION

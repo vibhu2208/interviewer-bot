@@ -1,0 +1,21 @@
+{
+  "name": "sandbox-refresh",
+  "version": "1.0.0",
+  "description": "AWS Lambda function to refresh sandboxes",
+  "main": "dist/code/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@trilogy-group/xo-hiring-integration": "^1.1.4",
+    "axios": "^1.1.3",
+    "qs": "^6.10.3",
+    "zod": "^3.11.6"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.5",
+    "@types/qs": "^6.9.7",
+    "aws-sdk": "^2.1048.0",
+    "typescript": "^4.5.4"
+  }
+}

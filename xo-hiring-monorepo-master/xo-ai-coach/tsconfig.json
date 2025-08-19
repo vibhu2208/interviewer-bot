@@ -1,0 +1,12 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "isolatedModules": true,
+    "outDir": "dist/code"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules/"],
+  "ts-node": {
+    "files": true
+  }
+}

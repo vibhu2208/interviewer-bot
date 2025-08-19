@@ -1,0 +1,57 @@
+{
+  "name": "sourcing-manager",
+  "version": "1.0.0",
+  "description": "Contains various sourcing-related lambda functions",
+  "author": "Artem Melnikov",
+  "scripts": {
+    "build": "tsx build.ts",
+    "test": "jest --silent --verbose",
+    "coverage": "jest --silent --verbose --coverage --coverageReporters='text-summary'",
+    "local-run": "tsx src/local-run.ts"
+  },
+  "dependencies": {
+    "@trilogy-group/xoh-integration": "1.5.0",
+    "@kontent-ai/delivery-sdk": "15.2.0",
+    "@aws-sdk/client-s3": "3.600.0",
+    "@aws-sdk/client-bedrock-runtime": "3.600.0",
+    "xmlbuilder": "15.1.1",
+    "xmlbuilder2": "^3.1.1",
+    "luxon": "3.4.4",
+    "uuid": "10.0.0",
+    "axios": "^1.7.9",
+    "csv": "6.3.9",
+    "zod": "^3.24.1",
+    "ai": "^4.1.18",
+    "@ai-sdk/amazon-bedrock": "^1.1.6",
+    "@ai-sdk/openai": "^1.1.9",
+    "text-table": "^0.2.0"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "tsx": "4.11.0",
+    "@types/node": "20.12.12",
+    "@types/aws-lambda": "^8.10.85",
+    "@types/text-table": "^0.2.5",
+    "esbuild": "0.21.3",
+    "fast-glob": "3.3.2",
+    "@types/luxon": "3.4.2",
+    "xml2js": "0.6.2",
+    "@types/xml2js": "0.4.14",
+    "@types/uuid": "10.0.0",
+    "jest": "29.7.0",
+    "ts-jest": "29.1.5",
+    "@types/jest": "29.5.12",
+    "dotenv": "16.4.5",
+    "@langchain/openai": "^0.3.11",
+    "langchain": "^0.3.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "roots": [
+      "test"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  }
+}

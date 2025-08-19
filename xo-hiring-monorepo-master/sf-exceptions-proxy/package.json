@@ -1,0 +1,22 @@
+{
+  "name": "sf-exceptions-proxy",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "dependencies": {
+    "mailparser": "^3.6.4",
+    "html-to-text": "^9.0.5"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.363.0",
+    "@types/mailparser": "^3.4.0",
+    "@types/html-to-text": "^9.0.1",
+    "typescript": "^4.9.5",
+    "@tsconfig/node18": "^1.0.3",
+    "@types/aws-lambda": "^8.10.119",
+    "@types/node": "^18.16.17",
+    "ts-node": "^10.9.1",
+    "esbuild": "^0.18.1"
+  }
+}

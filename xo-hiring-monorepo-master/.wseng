@@ -1,0 +1,6 @@
+{
+    "contextFolder": ".context",
+    "specs": [],
+    "scripts": {},
+    "pullRequestTemplate": "{{ ticketUrl }}"
+}

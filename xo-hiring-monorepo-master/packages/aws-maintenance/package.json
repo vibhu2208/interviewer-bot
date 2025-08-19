@@ -1,0 +1,30 @@
+{
+  "name": "aws-maintenance",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean-stale": "tsx ./src/cleanup-stale-resources.ts",
+    "clean-logs": "tsx ./src/cleanup-cloudwatch-logs.ts"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "@octokit/rest": "^21.1.1",
+    "luxon": "^3.6.1",
+    "@trilogy-group/lambda-cdk-infra": "^4.0.0",
+    "@trilogy-group/xo-hiring-parameters": "^2.0.0",
+    "@trilogy-group/xoh-integration": "^1.6.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.806.0",
+    "@aws-sdk/client-s3": "^3.806.0",
+    "@aws-sdk/client-cloudfront": "^3.806.0",
+    "@aws-sdk/client-api-gateway": "^3.806.0",
+    "@aws-sdk/client-iam": "^3.806.0",
+    "@aws-sdk/client-cloudformation": "^3.806.0",
+    "@aws-sdk/client-lambda": "^3.806.0"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.6.2",
+    "@types/node": "^20.17.46",
+    "tsx": "^4.19.4",
+    "typescript": "^4.3.5"
+  }
+}

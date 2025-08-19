@@ -1,0 +1,41 @@
+{
+  "name": "automations",
+  "version": "1.0.0",
+  "description": "Various automations",
+  "scripts": {
+    "build": "tsx build.ts",
+    "test": "jest --silent --verbose",
+    "coverage": "jest --silent --verbose --coverage --coverageReporters='text-summary'",
+    "ltest": "tsx src/test.ts"
+  },
+  "dependencies": {
+    "@trilogy-group/xoh-integration": "^1.7.0",
+    "luxon": "^3.6.1",
+    "nodemailer": "^7.0.5",
+    "@aws-sdk/client-sesv2": "^3.840.0",
+    "handlebars": "^4.7.8"
+  },
+  "devDependencies": {
+    "typescript": "5.4.5",
+    "tsx": "4.11.0",
+    "@types/node": "20.12.12",
+    "@types/aws-lambda": "^8.10.85",
+    "@types/nodemailer": "^6.4.17",
+    "esbuild": "0.21.3",
+    "fast-glob": "3.3.2",
+    "@types/luxon": "^3.6.2",
+    "jest": "29.7.0",
+    "ts-jest": "29.1.5",
+    "@types/jest": "29.5.12",
+    "dotenv": "16.4.5"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "roots": [
+      "test"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  }
+}

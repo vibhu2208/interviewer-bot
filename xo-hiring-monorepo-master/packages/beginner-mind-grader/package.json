@@ -1,0 +1,32 @@
+{
+  "name": "beginner-mind-grader",
+  "version": "1.0.0",
+  "description": "Grade Beginner Mind Assessment",
+  "type": "module",
+  "dependencies": {
+    "@trilogy-group/xoh-integration": "1.5.0",
+    "@googleapis/sheets": "^9.3.1",
+    "@googleapis/drive": "^8.14.0",
+    "axios": "^1.7.9",
+    "zod": "^3.24.1",
+    "ai": "^4.1.18",
+    "@ai-sdk/amazon-bedrock": "^1.1.6",
+    "@aws-sdk/credential-providers": "^3.750.0",
+    "@ai-sdk/openai": "^1.1.9"
+  },
+  "devDependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.386.0",
+    "@types/aws-lambda": "^8.10.126",
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.2",
+    "tsx": "4.11.0",
+    "esbuild": "0.21.3",
+    "fast-glob": "3.3.2",
+    "dotenv": "^16.4.7"
+  },
+  "scripts": {
+    "bm-grade": "tsx src/index.ts"
+  },
+  "author": "",
+  "license": "ISC"
+}

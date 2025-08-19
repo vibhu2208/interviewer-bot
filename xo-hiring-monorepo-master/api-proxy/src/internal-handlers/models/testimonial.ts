@@ -1,0 +1,23 @@
+import { IContentItem, Elements } from '@kontent-ai/delivery-sdk';
+import { Brand } from './brand';
+export type Testimonial = IContentItem<{
+  description: Elements.TextElement;
+  location: Elements.TextElement;
+  cityState: Elements.TextElement;
+  country: Elements.TaxonomyElement;
+  type: Elements.MultipleChoiceElement;
+  urlSlug: Elements.UrlSlugElement;
+  headline: Elements.TextElement;
+  jobTitle: Elements.TextElement;
+  functionalDomain: Elements.TaxonomyElement;
+  picture: Elements.AssetsElement;
+  interviewVideoPreview: Elements.AssetsElement;
+  contractorName: Elements.TextElement;
+  brand: Elements.LinkedItemsElement<Brand>;
+  legacyUrl: Elements.TextElement;
+  summary: Elements.TextElement;
+  storyContent: Elements.RichTextElement;
+  interviewVideo: Elements.TextElement;
+  score: Elements.NumberElement;
+  testimonialTopic: Elements.TaxonomyElement;
+}>;

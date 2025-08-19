@@ -1,0 +1,14 @@
+.idea
+.vscode
+node_modules
+coverage
+dist
+test-report.xml
+.DS_Store
+.env
+.context
+.codebuddy
+.aider*
+.npmrc
+.cursor/rules/wseng
+.sfdx

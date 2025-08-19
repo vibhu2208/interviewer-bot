@@ -1,0 +1,12 @@
+[pr_reviewer]
+require_estimate_effort_to_review=false
+num_code_suggestions=10 # Only the built-in `General` profile uses this.
+enable_review_labels_security=false
+enable_review_labels_effort=false
+
+[pr_reviewer_ex]
+agents_profiles=['.tools/pr-agents/.code_conventions.toml', '.tools/pr-agents/.quality_bar.toml']
+use_extra_default_review=true
+
+[ignore]
+glob = ['*.json']

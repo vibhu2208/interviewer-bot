@@ -1,0 +1,7 @@
+.env
+actions.json
+log.txt
+actions.txt
+csvReport.json
+csvReport.csv
+sf.cache.json

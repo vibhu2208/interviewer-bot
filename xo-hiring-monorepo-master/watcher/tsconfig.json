@@ -1,0 +1,10 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "include": ["src/index.ts"],
+  "compilerOptions": {
+    "isolatedModules": true,
+    "outDir": "dist/code",
+    "resolveJsonModule": true,
+    "sourceMap": true
+  }
+}
